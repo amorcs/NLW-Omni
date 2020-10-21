@@ -26,7 +26,7 @@ function OrphanagesMap() {
             <span>Pará</span>
         </footer>
       </aside>
-      <Map 
+      <Map className="map"
         center={[-1.3769462,-48.4373472]}
         zoom={15}
         style={{ width: '100%', height: '100%' }}
