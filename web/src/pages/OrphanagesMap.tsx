@@ -1,9 +1,10 @@
 import React from "react";
 // import libriry
 import { Link } from "react-router-dom";
-import { FiPlus } from "react-icons/fi";
-import { Map } from 'react-leaflet';
-import { TileLayer } from "react-leaflet";
+import { FiArrowRight, FiPlus } from "react-icons/fi";
+import { Map, Popup } from 'react-leaflet';
+import { TileLayer, Marker } from "react-leaflet";
+import Leaflet from "leaflet";
 
 import 'leaflet/dist/leaflet.css';
 // import internal
@@ -12,6 +13,12 @@ import mapMarkerImg from "../images/map-marker.svg";
 // import css
 import '../styles/pages/orphanages-map.css';
 
+const mapIcon = Leaflet.icon({
+  iconUrl: mapMarkerImg,
+  iconSize: [48,58],
+  iconAnchor: [24, 58],
+  popupAnchor: [170, 2]
+})
 function OrphanagesMap() {
   return (
     <div id="page-map">
@@ -29,8 +36,17 @@ function OrphanagesMap() {
       <Map className="map"
         center={[-1.3769462,-48.4373472]}
         zoom={15}
-        style={{ width: '100%', height: '100%' }}
-      >
+        style={{ width: '100%', height: '100%' }}>
+          <Marker
+            icon={mapIcon}
+            position={[-1.3769462,-48.4373472]}>
+            <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
+              Casa marcos
+              <Link to="">
+                <FiArrowRight size={20} color="#fff"/>
+              </Link>
+            </Popup>
+          </Marker>
           <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       </Map>
       <Link to="/" className="create-orphanage">
